@@ -9,9 +9,9 @@ Gem::Specification.new do |gem|
   gem.homepage      = "http://robdodson.me"
 
   gem.files         = `git ls-files`.split($\)
-  gem.executables   = ["zerp"]
+  gem.executables   = ["current_games"]
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "zerp"
+  gem.name          = "current_games"
   gem.require_paths = ["lib"]
   gem.version       = Zerp::VERSION
 end

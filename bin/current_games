@@ -2,4 +2,5 @@
 
 require 'api'
 
-response.body
+api_call = Api::Body.new
+api_call.api_call
