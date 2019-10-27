@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'zerp'
-
-chatter = Zerp::Chatter.new
-chatter.say_hello
