@@ -2,5 +2,7 @@
 
 require 'api'
 
-api_call = Api::Body.new
-api_call.api_call
+step_1 = Api::Top_Thirty.new
+step_1.api_call
+step_2 = Api::Top_Player.new
+step_2.api_call
