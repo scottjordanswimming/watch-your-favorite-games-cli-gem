@@ -42,7 +42,7 @@ $game_name = []
         e = c.each_with_index {|hash,i| ids << hash["id"]}
 
         puts games
-        puts "Welcome! Here is a list of today's most popular games. Enter a number 0 - 30 to get a URL where you can watch that game live."
+        puts "Welcome! Above is a list of today's most popular games. Type a number 0 - 30, then press enter, to get a URL where you can watch that game live."
 
         f = gets.chomp
         g = f.to_i
@@ -62,34 +62,29 @@ class Top_Player
 
   def api_call
 
-x = $game_id[0]
-y = $game_name[0]
-uri = URI.parse("https://api.twitch.tv/helix/streams?game_id=#{x}&first=1")
-request = Net::HTTP::Get.new(uri)
-request["Client-Id"] = "212gsg4xr17yp12of3kmw7sha2f121"
+    x = $game_id[0]
+    y = $game_name[0]
+    uri = URI.parse("https://api.twitch.tv/helix/streams?game_id=#{x}&first=1")
+    request = Net::HTTP::Get.new(uri)
+    request["Client-Id"] = "212gsg4xr17yp12of3kmw7sha2f121"
 
-req_options = {
-use_ssl: uri.scheme == "https",
-}
+    req_options = {
+      use_ssl: uri.scheme == "https",
+    }
 
-response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-http.request(request)
-end
-a = response.body
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+      end
+    a = response.body
+    b = JSON.parse(a)
+    c = b["data"]
+    d = c[0]
+    e = d["user_name"]
 
-b = JSON.parse(a)
+    puts "Copy and paste this URL into your browser to watch a live game of #{y}: https://www.twitch.tv/#{e}"
 
- c = b["data"]
- d = c[0]
- e = d["user_name"]
-
-puts "Copy and paste this URL into your browser to watch a live game of #{y}: https://www.twitch.tv/#{e}"
-
-
-end
+  end
 
 end
-
-
 
 end
