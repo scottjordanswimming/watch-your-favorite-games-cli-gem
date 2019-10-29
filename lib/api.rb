@@ -26,7 +26,7 @@ class Api
   def self.api_players
 # takes user selection game id and inserts into API call. API call returns most viewed game being played
     x = Games.ids
-    y = x[1]
+    y = x[0]
     uri = URI.parse("https://api.twitch.tv/helix/streams?game_id=#{y}&first=1")
     request = Net::HTTP::Get.new(uri)
     request["Client-Id"] = "212gsg4xr17yp12of3kmw7sha2f121"

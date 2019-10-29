@@ -49,7 +49,7 @@ def first_prompt
     f = @@game_name[1]
 
 # provides user with a link of their game
-
+puts d
     system("open", "https://www.twitch.tv/#{e}")
     puts " "
     puts "We opened a live game of #{f} in your browser at this URL: https://www.twitch.tv/#{e} - This streamer's name is #{e}."
