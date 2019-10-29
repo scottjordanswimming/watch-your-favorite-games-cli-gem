@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require 'api'
+require 'cli'
 
-step_1 = Api::Top_Thirty.new
-step_1.api_call
-step_2 = Api::Top_Player.new
-step_2.api_call
+
+step_1 = Cli.new
+step_1.first_prompt
+step_1.second_prompt
