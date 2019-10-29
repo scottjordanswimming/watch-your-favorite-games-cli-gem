@@ -20,7 +20,7 @@ $game_name = []
 
     def api_call
 #API call to twitch.com which pulls top 30 most viewed current games
-      uri = URI.parse("https://api.twitch.tv/helix/games/top?first=32")
+      uri = URI.parse("https://api.twitch.tv/helix/games/top?first=26")
       request = Net::HTTP::Get.new(uri)
       request["Client-Id"] = "212gsg4xr17yp12of3kmw7sha2f121"
 
@@ -36,14 +36,14 @@ $game_name = []
         b = JSON.parse(a)
         c = b["data"]
         games = []
-        ids = []
+        ids = ["zero"]
 
 # pushes all games and ids into separate arrays with index
-        d = c.each_with_index {|hash,i| games << "#{i}. " + hash["name"]}
+        d = c.each_with_index {|hash,i| games << "#{i + 1}. " + hash["name"]}
         e = c.each_with_index {|hash,i| ids << hash["id"]}
 # shows all indexed games and prompts user
         puts games
-        puts "Welcome! Above is a list of today's most popular games. Type a number 0 - 30, then press enter, to get a URL where you can watch that game live."
+        puts "Welcome! Above is a list of today's most popular games. Type a number 1 - 25, then press enter, to get a URL where you can watch that game live."
 # gets user input, turns string to integer
         f = gets.chomp
         g = f.to_i
