@@ -7,7 +7,7 @@ require 'cli'
 class Games
 
     @games = ["nil"]
-    @ids = ["nil"]
+    @ids = []
 
     #attr_accessor :store_games
 

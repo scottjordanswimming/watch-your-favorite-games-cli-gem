@@ -38,6 +38,7 @@ class Cli
       end
 
   def second_prompt
+<<<<<<< HEAD
     b = Api.api_players
     puts 'hi'
     c = JSON.parse(b)
@@ -50,6 +51,19 @@ class Cli
     puts d
     system('open', "https://www.twitch.tv/#{e}")
     puts ' '
+=======
+    a = Api.api_players
+    b = JSON.parse(a)
+    c = b["data"]
+    d = c[0]
+    e = d["user_name"]
+    f = @@game_name[1]
+
+# provides user with a link of their game
+
+    system("open", "https://www.twitch.tv/#{e}")
+    puts " "
+>>>>>>> parent of 5dc5689... broken currently, but better
     puts "We opened a live game of #{f} in your browser at this URL: https://www.twitch.tv/#{e} - This streamer's name is #{e}."
     puts ' '
   end
