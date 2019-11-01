@@ -1,60 +1,66 @@
+# frozen_string_literal: true
+
 require 'net/http'
 require 'uri'
-require "current_games/version"
+require 'current_games/version'
 require 'json'
-require 'games'
 require 'api'
+require 'players'
+require 'games'
 
 class Cli
+  attr_accessor :games, :store_games, :store_players, :players
 
-  attr_accessor :games, :store_games
+  @@user_selection = []
+  @@game_name = ['nil']
 
-@@game_id = ["nil"]
-@@game_name = ["nil"]
+  def first_prompt
+    Games.store_games
+    puts Games.all
+    puts ' '
+    puts "Welcome! Above is a list of today's most popular games. Type a number 1 - 25, then press enter to get a URL where you can watch that game live."
 
-def initialize
-  @store_games = store_games
+    f = gets.chomp
+    g = f.to_i
 
-end
-
-# @@game_id = []
-#
-#     def self.game_id
-#       @@game_id
-#     end
-def first_prompt
-
-
-# shows all indexed games and prompts user
-        Games.store_games
-        puts Games.all
-        puts " "
-        puts "Welcome! Above is a list of today's most popular games. Type a number 1 - 25, then press enter to get a URL where you can watch that game live."
-# gets user input, turns string to integer
-        f = gets.chomp
-        g = f.to_i
-        h = Games.ids[g]
-# pushes user selection into game id array and game name array
-      @@game_id << h
-      @@game_name << Games.all[g]
-
-    end
+    @@user_selection << g
+    @@game_name << Games.all[g]
+      end
 
   def second_prompt
-    a = Api.api_players
-    b = JSON.parse(a)
-    c = b["data"]
-    d = c[0]
-    e = d["user_name"]
-    f = @@game_name[1]
+    Players.store_players
+    list_players = Players.all
+    first_player = list_players[0]
+    game_name = @@game_name[1]
+    fixed_name = game_name[3...]
 
-# provides user with a link of their game
-
-    system("open", "https://www.twitch.tv/#{e}")
-    puts " "
-    puts "We opened a live game of #{f} in your browser at this URL: https://www.twitch.tv/#{e} - This streamer's name is #{e}."
-    puts " "
+    system('open', "https://www.twitch.tv/#{first_player}")
+    puts ' '
+    puts "We opened a live game of #{fixed_name} in your browser at this URL: https://www.twitch.tv/#{first_player} - This streamer's name is #{first_player}."
+    puts ' '
 
   end
+
+  def third_prompt
+    puts "Would you like to see a list of funny clips of #{first_player} playing #{fixed_name}? (Y/N). Type Y for Yes, or N for No."
+
+prompt_user = gets.chomp
+user_response = prompt_user.to_s
+
+    if user_response == "N" || "n"
+      exit!
+    else
+    #to_integer = f.to_i
+  end
+
+  end
+
+  def self.user_selection
+    @@user_selection
+  end
+
+
+
+
 
 end

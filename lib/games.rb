@@ -1,41 +1,37 @@
+# frozen_string_literal: true
+
 require 'net/http'
 require 'uri'
-require "current_games/version"
+require 'current_games/version'
 require 'json'
 require 'cli'
+require 'api'
 
 class Games
+  @games = ['nil']
+  @@ids = ['nil']
 
-    @games = ["nil"]
-    @ids = []
+  # attr_accessor :store_games
 
-    #attr_accessor :store_games
+  def initialize; end
 
-    def initialize
+  def self.store_games
+    api_call = Api.new
+    top_games = api_call.api_top_games
 
-    end
-
-    def self.store_games
-
-      a = Api.new
-      b = a.api_top_games
-
-            c = JSON.parse(b)
-            d = c["data"]
+    parsed_games = JSON.parse(top_games)
+    data_of_games = parsed_games['data']
 
     # pushes all games and ids into separate arrays with index
-            e = d.each_with_index {|hash,i| @games << "#{i + 1}. " + hash["name"]}
-            f = d.each_with_index {|hash,i| @ids << hash["id"]}
+    e = data_of_games.each_with_index { |hash, i| @games << "#{i + 1}. " + hash['name'] }
+    f = data_of_games.each_with_index { |hash, _i| @@ids << hash['id'] }
+    end
 
-      end
+  def self.all
+    @games
+  end
 
-      def self.all
-        @games
-      end
-
-def self.ids
-  @ids
-end
-
-
+  def self.ids
+    @@ids
+  end
 end
