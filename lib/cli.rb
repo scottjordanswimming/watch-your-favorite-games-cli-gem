@@ -7,6 +7,7 @@ require 'json'
 require 'api'
 require 'players'
 require 'games'
+require 'videos'
 
 class Cli
   attr_accessor :games, :store_games, :store_players, :players
@@ -25,32 +26,51 @@ class Cli
 
     @@user_selection << g
     @@game_name << Games.all[g]
-      end
+  end
+
+  def get_player
+        Players.store_players
+        list_players = Players.all
+        first_player = list_players[0]
+        first_player
+  end
+
+  def get_game
+        game_name = @@game_name[1]
+        fixed_name = game_name[3...]
+        fixed_name
+  end
 
   def second_prompt
-    Players.store_players
-    list_players = Players.all
-    first_player = list_players[0]
-    game_name = @@game_name[1]
-    fixed_name = game_name[3...]
 
-    system('open', "https://www.twitch.tv/#{first_player}")
+a = get_game
+b = get_player
+
+
+    system('open', "https://www.twitch.tv/#{b}")
     puts ' '
-    puts "We opened a live game of #{fixed_name} in your browser at this URL: https://www.twitch.tv/#{first_player} - This streamer's name is #{first_player}."
+    puts "We opened a live game of #{a} in your browser at this URL: https://www.twitch.tv/#{b} - This streamer's name is #{b}."
     puts ' '
 
   end
 
   def third_prompt
-    puts "Would you like to see a list of funny clips of #{first_player} playing #{fixed_name}? (Y/N). Type Y for Yes, or N for No."
+    a = get_game
+    b = get_player
+    puts "You have 3 options:"
+    puts "1 - Go back to the main menu. (Type 1 then press enter on your keyboard)"
+    puts "2 - Watch #{b}'s most popuar videos. (Type 2 then press enter on your keyboard)"
+    puts "3 - Exit. (Press Enter or type 3 then press enter on your keyboard)"
 
-prompt_user = gets.chomp
-user_response = prompt_user.to_s
 
-    if user_response == "N" || "n"
-      exit!
-    else
-    #to_integer = f.to_i
+user_prompt = gets.chomp
+user_response = user_prompt.to_i
+
+    if user_response == 2
+      Videos.store_videos
+      list_videos = Videos.all
+      puts list_videos
+
   end
 
   end
