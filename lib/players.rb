@@ -6,6 +6,7 @@ require 'current_games/version'
 require 'json'
 require 'games'
 require 'api'
+require 'pry'
 
 class Players
   attr_accessor :name, :store_players
@@ -26,6 +27,7 @@ class Players
     a = Api.new
     b = a.api_players
     c = JSON.parse(b)
+    # binding.pry
     d = c['data']
     e = d[0]
     f = e['user_name']
