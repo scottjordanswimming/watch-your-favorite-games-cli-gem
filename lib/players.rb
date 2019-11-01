@@ -6,7 +6,6 @@ require 'current_games/version'
 require 'json'
 require 'games'
 require 'api'
-require 'pry'
 
 class Players
   attr_accessor :name, :store_players
@@ -19,9 +18,6 @@ class Players
     @id = id
     @store_players = store_players
   end
-  # def game_id
-  #  Top_Thiry.game_id
-  # end
 
   def self.store_players
     a = Api.new

@@ -12,10 +12,10 @@ class Videos
 
   @@videos = []
 
-  def initialize(name = nil, _id = nil)
-    @name = name
-    @store_videos = store_videos
-  end
+  # def initialize(name = nil, _id = nil)
+  #   @name = name
+  #   @store_videos = store_videos
+  # end
 
   def self.store_videos
     a = Api.new

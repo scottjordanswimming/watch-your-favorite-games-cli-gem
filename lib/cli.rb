@@ -58,45 +58,6 @@ class Cli
   end
 
   def second_prompt
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    b = Api.api_players
-    puts 'hi'
-    c = JSON.parse(b)
-    d = c['data']
-    e = d[0]
-    f = e['user_name']
-    g = @@game_name[1]
-
-    # provides user with a link of their game
-    puts d
-    system('open', "https://www.twitch.tv/#{e}")
-    puts ' '
-=======
-=======
->>>>>>> parent of 403ad89... don't
-    a = Api.api_players
-    b = JSON.parse(a)
-    c = b["data"]
-    d = c[0]
-    e = d["user_name"]
-    f = @@game_name[1]
-
-# provides user with a link of their game
-<<<<<<< HEAD
-
-    system("open", "https://www.twitch.tv/#{e}")
-    puts " "
->>>>>>> parent of 5dc5689... broken currently, but better
-=======
-puts d
-    system("open", "https://www.twitch.tv/#{e}")
-    puts " "
->>>>>>> parent of 403ad89... don't
-    puts "We opened a live game of #{f} in your browser at this URL: https://www.twitch.tv/#{e} - This streamer's name is #{e}."
-    puts " "
-=======
 a = get_game
 b = get_player
 
@@ -141,7 +102,6 @@ user_response = user_prompt.to_i
       step_1.third_prompt
   end
   end
->>>>>>> newbranch
 
   def self.user_selection
     @@user_selection
