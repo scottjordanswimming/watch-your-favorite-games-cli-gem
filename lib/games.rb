@@ -11,8 +11,6 @@ class Games
   @games = ['nil']
   @@ids = ['nil']
 
-  # attr_accessor :store_games
-
   def initialize; end
 
   def self.store_games
