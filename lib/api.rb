@@ -10,7 +10,6 @@ require 'videos'
 
 class Api
   def api_top_games
-    # API call to twitch.com which pulls top 30 most viewed current games
     uri = URI.parse('https://api.twitch.tv/helix/games/top?first=26')
     request = Net::HTTP::Get.new(uri)
     request['Client-Id'] = '212gsg4xr17yp12of3kmw7sha2f121'
@@ -26,7 +25,6 @@ class Api
     end
 
   def api_players
-    # takes user selection game id and inserts into API call. API call returns most viewed game being played
     z = Games.ids
     t = Cli.user_selection
     u = t[0]

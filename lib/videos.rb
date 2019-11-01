@@ -16,18 +16,14 @@ class Videos
     @name = name
     @store_videos = store_videos
   end
-  # def game_id
-  #  Top_Thiry.game_id
-  # end
 
   def self.store_videos
     a = Api.new
     b = a.api_videos
     c = JSON.parse(b)
     d = c['data']
-    e = d[0]
-    f = e['url']
-    @@videos << f
+    d.each { |videos| @@videos << videos['url'] }
+    @@videos
 end
 
   def self.all
