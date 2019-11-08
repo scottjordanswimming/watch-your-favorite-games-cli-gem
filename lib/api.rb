@@ -25,10 +25,10 @@ class Api
     end
 
   def api_players
-    z = Games.ids
-    t = Cli.user_selection
-    u = t[0]
-    y = z[u]
+    games_arr = Games.ids
+    user_input = Cli.user_selection
+    u = user_input[0]
+    y = games_arr[u]
     uri = URI.parse("https://api.twitch.tv/helix/streams?game_id=#{y}&first=1")
     request = Net::HTTP::Get.new(uri)
     request['Client-Id'] = '212gsg4xr17yp12of3kmw7sha2f121'
