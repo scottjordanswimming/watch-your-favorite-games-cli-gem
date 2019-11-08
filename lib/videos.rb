@@ -2,7 +2,7 @@
 
 require 'net/http'
 require 'uri'
-require 'current_games/version'
+require_relative 'current_games/version'
 require 'json'
 require 'games'
 require 'api'
