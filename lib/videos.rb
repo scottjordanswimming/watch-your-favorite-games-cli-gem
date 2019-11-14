@@ -4,18 +4,18 @@ require 'net/http'
 require 'uri'
 require_relative 'current_games/version'
 require 'json'
-require 'games'
-require 'api'
+require_relative 'games'
+require_relative 'api'
 
 class Videos
-  attr_accessor :name, :store_videos
+  attr_accessor :urls, :player
 
-  @@videos = []
+  @@all = []
 
-  # def initialize(name = nil, _id = nil)
-  #   @name = name
-  #   @store_videos = store_videos
-  # end
+  def initialize
+    @urls = urls
+    @player = player
+  end
 
   def self.store_videos
     a = Api.new

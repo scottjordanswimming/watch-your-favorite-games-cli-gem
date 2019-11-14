@@ -4,33 +4,38 @@ require 'net/http'
 require 'uri'
 require_relative 'current_games/version'
 require 'json'
-require 'api'
-require 'players'
-require 'games'
-require 'videos'
+require_relative 'api'
+require_relative 'player'
+require_relative 'games'
+require_relative 'videos'
 
 class Cli
   attr_accessor :games, :store_games, :store_players, :players
 
   @@user_selection = []
-  @@game_name = ['nil']
+  @@game_name = []
 
   def first_prompt
-    Games.store_games
-    game_list = Games.all
+
+    game_list = Games.all[0]
     puts ' '
     puts ' '
     puts game_list[1..25]
     puts ' '
     puts "Welcome! Above is a list of today's most popular games. Type a number 1 - 25, then press enter to get a URL where you can watch that game live."
 
-    f = gets.chomp
-    g = f.to_i
+    get_user_input = gets.chomp
+    user_input = get_user_input.to_i
 
-    if g.between?(1,25)
+    if user_input.between?(1,25)
 
     @@user_selection << g
     @@game_name << Games.all[g]
+    a = Players.new
+
+    z = Games.all
+    x = z[0]
+    a.add_player(x)
 
   else
     puts " "
@@ -58,12 +63,14 @@ class Cli
   end
 
   def second_prompt
-a = get_game
-b = get_player
+    get_game = @@game_name
+    game_name = get_game[0]
+    get_player = Api.api_players
+    player_name = a[0]
 
-    system('open', "https://www.twitch.tv/#{b}")
+    system('open', "https://www.twitch.tv/#{player_name}")
     puts ' '
-    puts "We opened a live game of #{a} in your browser at this URL: https://www.twitch.tv/#{b} - This streamer's name is #{b}."
+    puts "We opened a live game of #{game_name} in your browser at this URL: https://www.twitch.tv/#{player_name} - This streamer's name is #{player_name}."
     puts ' '
   end
 

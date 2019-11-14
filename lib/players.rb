@@ -4,39 +4,31 @@ require 'net/http'
 require 'uri'
 require_relative 'current_games/version'
 require 'json'
-require 'games'
-require 'api'
+require_relative 'games'
+require_relative 'api'
 
-class Players
-  attr_accessor :name, :store_players
+class Player
 
-  @@players = []
-  @@player_id = []
+  @@all = []
 
-  def initialize(name = nil, id = nil)
+  attr_accessor :name, :id, :videos
+
+  def initialize
     @name = name
     @id = id
-    @store_players = store_players
+    @videos = videos
+    @@all << Api.api_players
   end
 
-  def self.store_players
-    a = Api.new
-    b = a.api_players
-    c = JSON.parse(b)
-    # binding.pry
-    d = c['data']
-    e = d[0]
-    f = e['user_name']
-    g = e['user_id']
-    @@players << f
-    @@player_id << g
-end
+  def add_player(game)
+    game.player = self
+  end
 
   def self.all
-    @@players
+    @@all
   end
 
   def self.ids
-    @@player_id
+    @@all
   end
 end

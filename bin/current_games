@@ -1,9 +1,12 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require 'games'
 require 'cli'
 
-step_1 = Cli.new
-step_1.first_prompt
-step_1.second_prompt
-step_1.third_prompt
+step_1 = Games.new
+step_1.add_games
+step_2 = Cli.new
+step_2.first_prompt
+step_2.second_prompt
+step_2.third_prompt
