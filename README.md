@@ -1,23 +1,38 @@
-# Find your favorite games and watch them live
+# Zerp
 
-Welcome to the "Find your favorite games" CLI application!
+Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/zerp`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-This CLI app let's you choose from a list of today's most 25 popular games, where you can watch a live version of that game being played.
+TODO: Delete this and the text above, and describe your gem
 
-Then, if you like the person who's live streaming your game, you can choose to get a list of that streamer's most popular videos to watch too.
+## Installation
 
-## Installation and Running Program
+Add this line to your application's Gemfile:
 
-1. Clone this repository
-2. In terminal, change directory (cd) to your cloned folder "watch-your-favorite-games-cli-gem"
-3. In terminal, type "current_games", then press enter on your keyboard.
+```ruby
+gem 'zerp'
+```
 
-The application should load in terminal. If the application does not load then:
+And then execute:
 
-4. cd to bin
-5. Type "./current_games".
+    $ bundle
 
-6. The app loads in your terminal. Follow the instructions in terminal.
+Or install it yourself as:
+
+    $ gem install zerp
+
+## Usage
+
+TODO: Write usage instructions here
+
+## Development
+
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/zerp.
 
 ## License
 

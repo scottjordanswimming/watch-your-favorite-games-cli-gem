@@ -2,33 +2,36 @@
 
 require 'net/http'
 require 'uri'
-require_relative 'current_games/version'
+require 'zerp/version'
 require 'json'
-require_relative 'games'
-require_relative 'api'
+require 'cli'
+require 'game'
+require 'api'
 
 class Player
-
   @@all = []
 
-  attr_accessor :name, :id, :videos
+  attr_accessor :name, :id
 
-  def initialize
+  def initialize(name, id)
     @name = name
     @id = id
-    @videos = videos
-    @@all << Api.api_players
+    @@all << self
   end
 
   def add_player(game)
     game.player = self
   end
 
-  def self.all
-    @@all
+  def get_videos
+    Videos.all.select { |videos| videos.player_instance = self }
   end
 
-  def self.ids
+  # def add_videos(videos)
+  #   @videos << videos
+  # end
+
+  def self.all
     @@all
   end
 end

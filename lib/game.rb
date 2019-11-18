@@ -1,25 +1,20 @@
 # frozen_string_literal: true
 
-require 'net/http'
-require 'uri'
-require_relative 'current_games/version'
-require 'json'
-require_relative 'cli'
-require_relative 'api'
+require 'zerp/version'
+require 'api'
+require 'cli'
 
-class Games
+class Game
   @@all = []
 
   attr_accessor :name, :id, :player
 
-  def initialize
+  def initialize(name, id)
+    @name = name
     @list = []
     @id = id
-    @player = []
-  end
-
-  def add_games
-    @list << Api.api_top_games
+    @player = player
+    @@all << self
   end
 
   def self.all

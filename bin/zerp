@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+require 'cli'
+
+execute = Cli.new
+execute.first_prompt
