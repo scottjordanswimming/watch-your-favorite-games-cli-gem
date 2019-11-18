@@ -36,7 +36,7 @@ def get_user_input
     end
 videos
   end
-  
+
 def videos
       user_response = gets.chomp.to_i
 
@@ -62,8 +62,6 @@ def videos
       user_response = gets.chomp.to_i
 
       if user_response == 1
-        exit!
-      elsif user_response == 2
         exit!
       else
           puts ' '
