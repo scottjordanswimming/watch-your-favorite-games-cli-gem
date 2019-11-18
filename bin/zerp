@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ruby
 
-require 'cli'
+require './lib/environment'
 
-execute = Cli.new
-execute.first_prompt
+Cli.new.first_prompt

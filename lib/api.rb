@@ -1,18 +1,9 @@
 # frozen_string_literal: true
 
-require 'net/http'
-require 'uri'
-require 'zerp/version'
-require 'json'
-require 'cli'
-require 'game'
-require 'players'
-require 'videos'
-
 class Api
   def api_top_games
 
-    uri = URI.parse('https://api.twitch.tv/helix/games/top?first=25')
+    uri = URI.parse('https://api.twitch.tv/helix/games/top?first=26')
     request = Net::HTTP::Get.new(uri)
     request['Client-Id'] = '212gsg4xr17yp12of3kmw7sha2f121'
 
@@ -26,7 +17,7 @@ class Api
     data = response.body
     parsed_games = JSON.parse(data)
     data_of_games = parsed_games['data']
-    data_of_games.each_with_index { |hash, i| Game.new("#{i + 1}. " + hash['name'], + hash['id']) }
+    data_of_games.each_with_index { |hash, i| Game.new(hash['name'], + hash['id']) }
     end
 
   def api_players(game_id)
@@ -67,8 +58,7 @@ class Api
     data = response.body
     parsed_videos = JSON.parse(data)
     data_of_videos = parsed_videos['data']
-    #  binding.pry
     data_of_videos.each { |video| Videos.new(video['url'], new_player) }
-        # new_player.add_videos(data_of_videos)
+
       end
   end
