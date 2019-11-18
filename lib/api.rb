@@ -11,8 +11,7 @@ require 'videos'
 
 class Api
   def api_top_games
-    # @top_games = []
-    # @game_ids = []
+
     uri = URI.parse('https://api.twitch.tv/helix/games/top?first=25')
     request = Net::HTTP::Get.new(uri)
     request['Client-Id'] = '212gsg4xr17yp12of3kmw7sha2f121'

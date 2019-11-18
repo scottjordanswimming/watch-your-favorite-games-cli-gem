@@ -9,12 +9,11 @@ require 'pry'
 class Cli
   def first_prompt
     # here too
-    call_api = Api.new
-    call_api.api_top_games
+    Api.new.api_top_games
     # chain Game.all.each and remove the get_games variable
     get_games = Game.all
     puts ' '
-    get_games.each { |games| puts games.name }
+    Game.all.each { |games| puts games.name }
     puts ' '
     puts "Welcome! Above is a list of today's most popular games. Type a number 1 - 25, then press enter to get a URL where you can watch that game live."
 
@@ -28,7 +27,7 @@ class Cli
       get_name = game_selection.name
       game_name = get_name[3..-1]
 
-      call_api.api_players(game_id)
+      Api.new.api_players(game_id)
       all_players = Player.all
       # binding.pry
       player = all_players[0]
