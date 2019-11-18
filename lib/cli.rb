@@ -25,7 +25,7 @@ def get_user_input
 
       Api.new.api_players(game_selection.id)
       all_players = Player.all
-      @player = all_players[0]
+      @player = all_players[-1]
       puts ' '
       puts "We opened a live game of #{game_selection.name} in your browser at this URL: https://www.twitch.tv/#{@player.name} - This streamer's name is #{@player.name}."
       puts ' '
@@ -36,6 +36,7 @@ def get_user_input
     end
 videos
   end
+  
 def videos
       user_response = gets.chomp.to_i
 
